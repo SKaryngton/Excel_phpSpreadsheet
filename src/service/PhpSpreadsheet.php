@@ -586,4 +586,43 @@ class PhpSpreadsheet
         }
 
     }
+
+    public function headersWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+        $sheet->setCellValue("A1", "First");
+        $sheet->setCellValue("B1", "Second");
+        $sheet->setCellValue("C1", "Third");
+        $sheet->setCellValue("A2", "Hello");
+        $sheet->setCellValue("A3", "World!");
+        $sheet->setCellValue("A4", "Foo");
+        $sheet->setCellValue("B2", 12);
+        $sheet->setCellValue("B3", 34);
+        $sheet->setCellValue("B4", 56);
+        $sheet->setCellValue("C2", true);
+        $sheet->setCellValue("C3", false);
+        $sheet->setCellValue("C4", true);
+
+
+
+        // (C) AUTO FILTER
+        $sheet->setAutoFilter("A1:C4");
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
 }

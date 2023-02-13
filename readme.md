@@ -519,7 +519,102 @@ red {color: #ce4141}
    ```
   - Style Font  Alignment  Border  Fill
    ````
-        
+         public function styleFontWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+        $sheet->setCellValue("B1", "Hello");
+        $sheet->setCellValue("B2", "World!");
+        $sheet->setCellValue("B3", "Foo");
+        $sheet->setCellValue("B4", "Bar");
+        $sheet->getRowDimension("3")->setRowHeight(50);
+
+// (C) SET STYLE
+$styleSet = [
+// (C1) FONT
+"font" => [
+"bold" => true,
+"italic" => true,
+"underline" => true,
+"strikethrough" => true,
+"color" => ["argb" => "FFFF0000"],
+"name" => "Cooper Hewitt", //schriftart
+"size" => 22
+],
+
+            // (C2) ALIGNMENT
+            "alignment" => [
+                "horizontal" => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+                // \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT
+                // \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER
+                "vertical" => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_BOTTOM
+                // \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_TOP
+                // \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+            ],
+            // (C3) BORDER
+            "borders" => [
+                "top" => [
+                    "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                    "color" => ["argb" => "FFFF0000"]
+                ],
+                "bottom" => [
+                    "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                    "color" => ["argb" => "FF00FF00"]
+                ],
+                "left" => [
+                    "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_MEDIUM,
+                    "color" => ["argb" => "FF0000FF"]
+                ],
+                "right" => [
+                    "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    "color" => ["argb" => "FF0000FF"]
+                ]
+                /* ALTERNATIVELY, THIS WILL SET ALL
+                "outline" => [
+                  "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                  "color" => ["argb" => "FFFF0000"]
+                ]*/
+            ],
+            // (C4) FILL
+            "fill" => [
+                // SOLID FILL
+                "fillType" => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                "color" => ["argb" => "FF110000"]
+
+                /* GRADIENT FILL
+                "fillType" => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_GRADIENT_LINEAR,
+                "rotation" => 90,
+                "startColor" => [
+                  "argb" => "FF000000",
+                ],
+                "endColor" => [
+                  "argb" => "FFFFFFFF",
+                ]*/
+            ]
+            ];
+
+        $style = $sheet->getStyle("B3");
+        // $style = $sheet->getStyle("B1:B4");
+        $style->applyFromArray($styleSet);
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
   
-   ````
+    ````
+  - Header(AutoFilter  )
+    
   - 
