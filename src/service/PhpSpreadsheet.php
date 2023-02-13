@@ -175,4 +175,30 @@ class PhpSpreadsheet
         }
 
     }
+
+    public function countWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        //Set Cell Value
+        $sheet->setCellValue("A1","Hello World!");
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+        // COPY WorkSheet and add worksheet
+        $copy=clone $spreadsheet->getSheetByName("First Sheet");
+        $copy->setTitle("Copy Sheet");
+        $spreadsheet->addSheet($copy);
+
+        //GET TOTAL NUMBER OF WORKSHEETS
+        $total=$spreadsheet->getSheetCount();
+
+        return $total;
+
+
+
+    }
 }
