@@ -144,5 +144,35 @@ class PhpSpreadsheet
     }
 
 
+    public function deleteWorksheet(){
 
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        //Set Cell Value
+        $sheet->setCellValue("A1","Hello World!");
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+        // COPY WorkSheet and add worksheet
+        $copy=clone $spreadsheet->getSheetByName("First Sheet");
+        $copy->setTitle("Copy Sheet");
+        $spreadsheet->addSheet($copy);
+
+        //Delete CopySheet
+        $spreadsheet->removeSheetByIndex(1);
+
+
+        // (D) Save in the   Public Directory
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
 }
