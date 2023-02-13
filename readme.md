@@ -210,4 +210,42 @@ red {color: #ce4141}
 
     } 
    ```
+  - Get single cell then set value
+   ```
+      public function SetCellValueWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        //Set Cell Value
+        $sheet->setCellValue("A1","Hello World!");
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+        
+
+        //GET Single Cell then Set Value
+        $cell=$sheet->getCell("A1");
+        $cell->setValue("Hello");
+
+        //GET Single Cell then get Value
+        $cell=$sheet->getCell("A1");
+        $val=$cell->getValue("Hello");
+
+
+
+        // (D) Save in the   Public Directory
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
+   
+   ```
   - 
