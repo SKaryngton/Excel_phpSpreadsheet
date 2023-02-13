@@ -260,4 +260,38 @@ class PhpSpreadsheet
         // for ($i=0; i<$highest; i++) { ... }
 
     }
+
+
+
+    public function selectRangeOfCellsWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+
+        //Range Of cells
+       // $data=$sheet->rangeToArray("A1:A3");
+
+       //SET DATA FROM ARRAY INTO CELLS
+        $data = [100, 53, 86];
+        $data = array_chunk($data, 1);
+        $sheet->fromArray($data, null, "B1");
+
+        // (D) Save in the   Public Directory
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
 }
