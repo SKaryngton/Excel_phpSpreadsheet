@@ -20,11 +20,13 @@ class HomeController extends AbstractController
     #[Route('/create', name: 'app_create')]
     public function create(PhpSpreadsheet $spreadsheet, LoggerInterface $logger): Response
     {
-       //$spreadsheet->generateAndDownloadSimpleExcelSheet();
-       // $spreadsheet->generateAndSaveOnServerSimpleExcelSheet();
-//        $value=$spreadsheet->readASheetCell();
-//        $logger->info($value);
-        $spreadsheet->addWorksheet();
+        //$spreadsheet->generateAndDownloadSimpleExcelSheet();
+        //$spreadsheet->generateAndSaveOnServerSimpleExcelSheet();
+        //$value=$spreadsheet->readASheetCell();
+        //$logger->info($value);
+        //$spreadsheet->addWorksheet();
+        //$spreadsheet->copyWorksheet();
+        $spreadsheet->deleteWorksheet();
         return $this->redirectToRoute('app_home');
     }
 }

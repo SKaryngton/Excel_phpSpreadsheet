@@ -118,8 +118,38 @@ red {color: #ce4141}
 
     }
     ```
-  - copy Worsheet
+  - copy and add Worsheet
    ```
-  
+        public function copyWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        //Set Cell Value
+        $sheet->setCellValue("A1","Hello World!");
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+        // COPY WorkSheet and add worksheet
+        $copy=clone $spreadsheet->getSheetByName("First Sheet");
+        $copy->setTitle("Copy Sheet");
+        $spreadsheet->addSheet($copy);
+
+        // (D) Save in the   Public Directory
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
    ```
   - Delete Worksheet
+    ```
+    
+    ```
+  - 
