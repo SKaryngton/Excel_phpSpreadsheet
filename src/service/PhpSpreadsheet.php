@@ -614,8 +614,11 @@ class PhpSpreadsheet
 
 
 
-        // (C) AUTO FILTER
+        // (C) AUTO FILTER Définissez le filtre automatique pour la plage donnée.
         $sheet->setAutoFilter("A1:C4");
+
+        // (D) FREEZE PANE  gèlera la première ligne
+        $sheet->freezePane("C2");
 
         $writer = new Xlsx($spreadsheet);
         try {
