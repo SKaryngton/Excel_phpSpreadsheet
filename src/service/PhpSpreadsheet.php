@@ -85,6 +85,33 @@ class PhpSpreadsheet
     }
 
 
+    public function addWorksheet(){
 
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        //Set Cell Value
+        $sheet->setCellValue("A1","Hello World!");
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+        // ADD WorkSheet
+        $spreadsheet->createSheet();
+        $sheet= $spreadsheet->getSheet(1);
+        $sheet->setTitle("Second Sheet");
+        $sheet->setCellValue("A1","New Sheet");
+
+        // (D) Save in the   Public Directory
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
 
 }
