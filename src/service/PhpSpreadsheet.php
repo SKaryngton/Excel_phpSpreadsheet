@@ -521,7 +521,17 @@ class PhpSpreadsheet
                 "color" => ["argb" => "FFFF0000"],
                 "name" => "Cooper Hewitt", //schriftart
                 "size" => 22
-            ]
+            ],
+
+            // (C2) ALIGNMENT
+            "alignment" => [
+                "horizontal" => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+                // \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT
+                // \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER
+                "vertical" => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_BOTTOM
+                // \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_TOP
+                // \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+            ],
             ];
 
         $style = $sheet->getStyle("B3");
