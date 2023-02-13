@@ -340,4 +340,81 @@ red {color: #ce4141}
 
     }
    ```
+  - MERGE & UNMERGE CELLS
+   ```
+      public function mergeAndUnmergeWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+        $sheet->setCellValue("A1", "Hello, this is a very very long string.");
+        $sheet->setCellValue("A2", "World!");
+        $sheet->setCellValue("A3", "Foo");
+        $sheet->setCellValue("A4", "Bar");
+
+
+        // (C) MERGE & UNMERGE CELLS
+        $sheet->mergeCells("A1:D1");
+        $sheet->mergeCells("A2:B2");
+        //$sheet->unmergeCells("A2:B2");
+
+        // (D) Save in the   Public Directory
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
+   ```
+  - Insert Row & Col
+   ```
+       public function insertRowAndColumnWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+        $sheet->setCellValue("A1", "Hello, this is a very very long string.");
+        $sheet->setCellValue("A2", "World!");
+        $sheet->setCellValue("A3", "Foo");
+        $sheet->setCellValue("A4", "Bar");
+
+
+        // (C) MERGE & UNMERGE CELLS
+        $sheet->mergeCells("A1:D1");
+        $sheet->mergeCells("A2:B2");
+        //$sheet->unmergeCells("A2:B2");
+
+        // (D) Save in the   Public Directory
+
+        // (D) INSERT ROW & COL
+        $sheet->insertNewColumnBefore("A", 1); // 1 new column before column A
+        $sheet->insertNewRowBefore(3, 1); // 1 new row before row 3
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
+  
+   ```
   - 
