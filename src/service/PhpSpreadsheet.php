@@ -294,4 +294,35 @@ class PhpSpreadsheet
         }
 
     }
+
+    public function formulasWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+        //SET DATA FROM ARRAY INTO CELLS
+        $data = [100, 53, 86];
+        $data = array_chunk($data, 1);
+        $sheet->fromArray($data, null, "B1");
+
+        // (E) FORMULAS ACCEPTED - JUST AS IN EXCEL
+        $sheet->setCellValue("B4", "=SUM(B1:B3)");
+
+        // (D) Save in the   Public Directory
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
 }
