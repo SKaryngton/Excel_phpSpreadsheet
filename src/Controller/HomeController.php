@@ -30,7 +30,8 @@ class HomeController extends AbstractController
         // $spreadsheet->selectRangeOfCellsWorksheet();
         //$spreadsheet->formulasWorksheet();
         //$spreadsheet->mergeAndUnmergeWorksheet();
-        $spreadsheet->insertRowAndColumnWorksheet();
+        //$spreadsheet->insertRowAndColumnWorksheet();
+         $spreadsheet->visbilityWorksheet();
         return $this->redirectToRoute('app_home');
     }
 }
