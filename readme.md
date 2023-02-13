@@ -248,4 +248,29 @@ red {color: #ce4141}
     }
    
    ```
+  - Highest Row and Column For loop
+    ```
+        public function getHighestRowAndColumnUSeLoopWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        //Set Cell Value
+        $sheet->setCellValue("A1","Hello World!");
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+
+        // (C4) GET HIGHEST ROW + COL
+        $highestRow = $sheet->getHighestRow();
+        $highestCol = $sheet->getHighestColumn();
+
+        // TIP - You can use $highestRow $highestCol to loop through the cells.
+        // for ($i=0; i<$highest; i++) { ... }
+
+    }
+    ```
   - 
