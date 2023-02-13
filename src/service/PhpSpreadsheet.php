@@ -532,6 +532,30 @@ class PhpSpreadsheet
                 // \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_TOP
                 // \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
             ],
+            // (C3) BORDER
+            "borders" => [
+                "top" => [
+                    "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                    "color" => ["argb" => "FFFF0000"]
+                ],
+                "bottom" => [
+                    "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                    "color" => ["argb" => "FF00FF00"]
+                ],
+                "left" => [
+                    "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_MEDIUM,
+                    "color" => ["argb" => "FF0000FF"]
+                ],
+                "right" => [
+                    "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    "color" => ["argb" => "FF0000FF"]
+                ]
+                /* ALTERNATIVELY, THIS WILL SET ALL
+                "outline" => [
+                  "borderStyle" => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                  "color" => ["argb" => "FFFF0000"]
+                ]*/
+            ],
             ];
 
         $style = $sheet->getStyle("B3");
