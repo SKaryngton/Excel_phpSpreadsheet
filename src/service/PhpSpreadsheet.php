@@ -61,4 +61,30 @@ class PhpSpreadsheet
    //  ob_end_flush();
     }
 
+    public function  readASheetCell(){
+
+        $value='';
+
+        //Read File
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        try {
+            $spreadsheet = $reader->load("uploads/hello.xlsx");
+
+
+            //Read Cells
+
+            $sheet=$spreadsheet->getSheet(0);
+            $cell = $sheet->getCell("A1");
+            $value=$cell->getValue();
+        } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception|\PhpOffice\PhpSpreadsheet\Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+        return $value;
+
+    }
+
+
+
+
 }

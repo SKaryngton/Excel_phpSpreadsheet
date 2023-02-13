@@ -61,3 +61,65 @@ red {color: #ce4141}
     }
   
      ```
+  - read xlxs file
+   ```
+      public function  readASheetCell(){
+
+        $value='';
+
+        //Read File
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        try {
+            $spreadsheet = $reader->load("uploads/hello.xlsx");
+
+
+            //Read Cells
+
+            $sheet=$spreadsheet->getSheet(0);
+            $cell = $sheet->getCell("A1");
+            $value=$cell->getValue();
+        } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception|\PhpOffice\PhpSpreadsheet\Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+        return $value;
+
+    }
+   ```
+  - add new Worksheet
+    ```
+         public function addWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        //Set Cell Value
+        $sheet->setCellValue("A1","Hello World!");
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+        // ADD WorkSheet
+        $spreadsheet->createSheet();
+        $sheet= $spreadsheet->getSheet(1);
+        $sheet->setTitle("Second Sheet");
+        $sheet->setCellValue("A1","New Sheet");
+
+        // (D) Save in the   Public Directory
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+
+    }
+    ```
+  - copy Worsheet
+   ```
+  
+   ```
+  - Delete Worksheet

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\service\PhpSpreadsheet;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,10 +18,13 @@ class HomeController extends AbstractController
     }
 
     #[Route('/create', name: 'app_create')]
-    public function create(PhpSpreadsheet $spreadsheet): Response
+    public function create(PhpSpreadsheet $spreadsheet, LoggerInterface $logger): Response
     {
        //$spreadsheet->generateAndDownloadSimpleExcelSheet();
-        $spreadsheet->generateAndSaveOnServerSimpleExcelSheet();
+       // $spreadsheet->generateAndSaveOnServerSimpleExcelSheet();
+//        $value=$spreadsheet->readASheetCell();
+//        $logger->info($value);
+        $spreadsheet->addWorksheet();
         return $this->redirectToRoute('app_home');
     }
 }
