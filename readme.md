@@ -465,4 +465,56 @@ red {color: #ce4141}
     }
   
    ```
+  - Width & Height
+   ```
+       public function withAndHeightCellsWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+        $sheet->setCellValue("A1", "Hello, this is a very very long string.");
+        $sheet->setCellValue("A2", "World!");
+        $sheet->setCellValue("A3", "Foo");
+        $sheet->setCellValue("A4", "Bar");
+
+
+        // (C) MERGE & UNMERGE CELLS
+        $sheet->mergeCells("A1:D1");
+        $sheet->mergeCells("A2:B2");
+        //$sheet->unmergeCells("A2:B2");
+
+        // (D) Save in the   Public Directory
+
+        // (D) INSERT ROW & COL
+        $sheet->insertNewColumnBefore("A", 1); // 1 new column before column A
+        $sheet->insertNewRowBefore(3, 1); // 1 new row before row 3
+
+        // (E) VISIBILITY
+        $sheet->getColumnDimension("A")->setVisible(false);
+        // $sheet->getColumnDimension("A")->setVisible(true);
+        $sheet->getRowDimension(4)->setVisible(false);
+        // $sheet->getRowDimension(4)->setVisible(true);
+
+        // (F) WIDTH & HEIGHT
+        $sheet->getRowDimension("4")->setRowHeight(100);
+        $sheet->getColumnDimension("C")->setWidth(100);
+        
+        
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
+   
+   ```
   - 
