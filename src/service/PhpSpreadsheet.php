@@ -491,4 +491,49 @@ class PhpSpreadsheet
         }
 
     }
+
+    public function styleFontWorksheet(){
+
+        //Create A new Spreadsheet
+        $spreadsheet= new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+
+        // Set Title
+        $sheet->setTitle("First Sheet");
+
+
+        $sheet->setCellValue("B1", "Hello");
+        $sheet->setCellValue("B2", "World!");
+        $sheet->setCellValue("B3", "Foo");
+        $sheet->setCellValue("B4", "Bar");
+        $sheet->getRowDimension("3")->setRowHeight(50);
+
+// (C) SET STYLE
+        $styleSet = [
+            // (C1) FONT
+            "font" => [
+                "bold" => true,
+                "italic" => true,
+                "underline" => true,
+                "strikethrough" => true,
+                "color" => ["argb" => "FFFF0000"],
+                "name" => "Cooper Hewitt", //schriftart
+                "size" => 22
+            ]
+            ];
+
+        $style = $sheet->getStyle("B3");
+        // $style = $sheet->getStyle("B1:B4");
+        $style->applyFromArray($styleSet);
+
+        $writer = new Xlsx($spreadsheet);
+        try {
+            $writer->save("uploads/hello.xlsx");
+        } catch (Exception $e) {
+            $this->logger->error(message: $e->getMessage());
+        }
+
+    }
 }
