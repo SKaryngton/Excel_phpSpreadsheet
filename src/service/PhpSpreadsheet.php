@@ -556,6 +556,22 @@ class PhpSpreadsheet
                   "color" => ["argb" => "FFFF0000"]
                 ]*/
             ],
+            // (C4) FILL
+            "fill" => [
+                // SOLID FILL
+                "fillType" => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                "color" => ["argb" => "FF110000"]
+
+                /* GRADIENT FILL
+                "fillType" => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_GRADIENT_LINEAR,
+                "rotation" => 90,
+                "startColor" => [
+                  "argb" => "FF000000",
+                ],
+                "endColor" => [
+                  "argb" => "FFFFFFFF",
+                ]*/
+            ]
             ];
 
         $style = $sheet->getStyle("B3");
