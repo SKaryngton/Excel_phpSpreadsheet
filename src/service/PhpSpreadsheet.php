@@ -1,18 +1,21 @@
-<style> 
-green { color: #299660} 
-yel { color: #9ea647} 
-blue { color: #099fc0} 
-red {color: #ce4141} 
-</style>
+<?php
 
-# <green> PhpSpreadsheet
+namespace App\service;
 
-- <yel>install PhpSpreadsheet
-     - <blue>composer require phpoffice/phpspreadsheet
-- <yel>create a new Spreadsheet
-    - create and save On server
-      ```
-         public function generateAndSaveOnServerSimpleExcelSheet(){
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Exception;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Psr\Log\LoggerInterface;
+
+class PhpSpreadsheet
+{
+
+
+    public function __construct(private LoggerInterface $logger)
+    {
+    }
+
+    public function generateAndSaveOnServerSimpleExcelSheet(){
 
         //Create A new Spreadsheet
         $spreadsheet= new Spreadsheet();
@@ -31,11 +34,9 @@ red {color: #ce4141}
         }
 
 
-        }
-      ```
-    - create and download
-     ```
-         public function generateAndDownloadSimpleExcelSheet(){
+    }
+
+    public function generateAndDownloadSimpleExcelSheet(){
 
         //Create A new Spreadsheet
         $spreadsheet= new Spreadsheet();
@@ -45,8 +46,8 @@ red {color: #ce4141}
         $sheet->setCellValue("A1","Hello World!");
 
         // (D) SEND DOWNLOAD HEADERS
-        //ob_clean();
-        //  ob_start();
+     //ob_clean();
+    //  ob_start();
         $writer = new Xlsx($spreadsheet);
         header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         header("Content-Disposition: attachment;filename=\"hello.xlsx\"");
@@ -57,7 +58,7 @@ red {color: #ce4141}
         header("Pragma: public");
         $writer->save("php://output");
         exit();
-       //  ob_end_flush();
+   //  ob_end_flush();
     }
-  
-     ```
+
+}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhpSpreadsheet{% endblock %}
+
+{% block body %}
+ <div>
+     <h1 class="text-center">PhpSpreadsheet</h1>
+     <div class="d-flex justify-content-center">
+         <a class="btn btn-success btn-sm" href="{{ path('app_create') }}">generate Excel sheet</a>
+     </div>
+ </div>
+{% endblock %}
